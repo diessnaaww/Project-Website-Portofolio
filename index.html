@@ -1547,6 +1547,43 @@
     </div>
   </footer>
 
+  <script>
+    
+  document.addEventListener("DOMContentLoaded", function () {
+    // Menangkap aksi klik tombol Submit WhatsApp
+    const waButton = document.getElementById("submit-wa-btn");
+    
+    if (waButton) {
+      waButton.addEventListener("click", function (event) {
+        // Mencegah form me-refresh halaman (mencegah default form action)
+        event.preventDefault();
+
+        // Mengambil nilai dari input form
+        const brandName = document.getElementById("form-brand").value;
+        const picName = document.getElementById("form-pic").value;
+        const service = document.getElementById("form-service").value;
+        const notes = document.getElementById("form-notes").value;
+
+        // Validasi input: Pastikan nama brand dan PIC wajib diisi
+        if (!brandName || !picName) {
+          alert("Mohon isi Nama Brand dan Nama PIC terlebih dahulu.");
+          return;
+        }
+
+        // Menyusun teks template untuk pesan WhatsApp
+        let waMessage = `Halo Kak Adiesti Nuri (Management Erfin Hidayat),%0A%0ASaya *${picName}* dari *${brandName}*. Kami tertarik untuk berkolaborasi dengan Kak Erfin.%0A%0A*Detail Inquiry:*%0ALayanan: ${service}%0ACatatan Brief: ${notes ? notes : "-" }%0A%0AMohon info lebih lanjut mengenai ketersediaan jadwal dan prosedur kerja samanya. Terima kasih!`;
+
+        // Mengarahkan langsung ke WhatsApp dengan teks yang sudah disusun
+        // Ganti nomor WhatsApp di bawah ini dengan nomor yang benar jika perlu (pastikan berawalan 62)
+        const waLink = `https://wa.me/6285649750554?text=${waMessage}`;
+        
+        // Membuka link WhatsApp di tab baru
+        window.open(waLink, "_blank");
+      });
+    }
+  });
+</script>
+
   <!-- Main JavaScript File -->
   <script src="js/main.js"></script>
 </body>
